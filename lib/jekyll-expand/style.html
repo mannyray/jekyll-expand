@@ -1,0 +1,72 @@
+<style>
+  .expandable {
+    --preview-height: 120px;   /* how much is visible when collapsed */
+    --fade-size: 120px;         /* how tall the fade-out is at the bottom */
+    --transition-ms: 280ms;
+
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    margin: 2rem auto;
+  }
+
+    .expandable__row {
+      display: flex; /* horizontal row: bar + content */
+      width: 100%;
+    }
+    
+  .expandable__content {
+    overflow: hidden;
+    max-height: var(--preview-height);
+    transition: max-height var(--transition-ms) ease;
+  }
+
+  /* Fade-out effect when collapsed: uses CSS mask (with -webkit- prefix for Safari) */
+  .expandable--collapsed .expandable__content {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black calc(var(--preview-height) - var(--fade-size)),
+      transparent var(--preview-height)
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) calc(var(--preview-height) - var(--fade-size)),
+      rgba(0,0,0,0) var(--preview-height)
+    );
+    -webkit-mask-size: 100% var(--preview-height);
+    mask-size: 100% var(--preview-height);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  /* Expanded state: remove mask and allow full height */
+  .expandable--expanded .expandable__content {
+    -webkit-mask-image: none;
+    mask-image: none;
+    /* Use a very large max-height so the transition can animate open */
+    max-height: 2000px;
+    transition: max-height .85s ease-in;
+  }
+
+  .expandable__toggle {
+    margin-top: 0.5rem;
+    border: 0;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.6rem;
+    background: #111;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    width: 100%;
+  }
+    
+.expandable__bar {
+    border-left: 4px solid #ccc;   /* grey vertical bar */
+    padding-left: 1em;
+}
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .expandable__content { transition: none; }
+  }
+</style>

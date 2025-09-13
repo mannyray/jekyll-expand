@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2025-09-12T20:59:41-04:00</updated><id>/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="/jekyll/update/2022/11/11/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2022-11-11T17:27:06-05:00</published><updated>2022-11-11T17:27:06-05:00</updated><id>/jekyll/update/2022/11/11/welcome-to-jekyll</id><content type="html" xml:base="/jekyll/update/2022/11/11/welcome-to-jekyll.html"><![CDATA[<p>In this page we have some examples of the <a href="https://github.com/mannyray/jekyll-expand">https://github.com/mannyray/jekyll-expand</a> tag plugin. Start with the one below… press the “Show more” followed by the “Show less” button to see the style and transitions of the buttons.</p>
+
+<style>
+  .expandabled41d8cd98f00b204e9800998ecf8427e {
+    --preview-height: 120px;   /* how much is visible when collapsed */
+    --fade-size: 120px;         /* how tall the fade-out is at the bottom */
+    --transition-ms: 280ms;
+
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    margin: 2rem auto;
+  }
+
+    .expandabled41d8cd98f00b204e9800998ecf8427e__row {
+      display: flex; /* horizontal row: bar + content */
+      width: 100%;
+    }
+    
+  .expandabled41d8cd98f00b204e9800998ecf8427e__content {
+    overflow: hidden;
+    max-height: var(--preview-height);
+    transition: max-height var(--transition-ms) ease;
+  }
+
+  /* Fade-out effect when collapsed: uses CSS mask (with -webkit- prefix for Safari) */
+  .expandabled41d8cd98f00b204e9800998ecf8427e--collapsed .expandabled41d8cd98f00b204e9800998ecf8427e__content {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black calc(var(--preview-height) - var(--fade-size)),
+      transparent var(--preview-height)
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) calc(var(--preview-height) - var(--fade-size)),
+      rgba(0,0,0,0) var(--preview-height)
+    );
+    -webkit-mask-size: 100% var(--preview-height);
+    mask-size: 100% var(--preview-height);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  /* Expanded state: remove mask and allow full height */
+  .expandabled41d8cd98f00b204e9800998ecf8427e--expanded .expandabled41d8cd98f00b204e9800998ecf8427e__content {
+    -webkit-mask-image: none;
+    mask-image: none;
+    /* Use a very large max-height so the transition can animate open */
+    max-height: 2000px;
+    transition: max-height .85s ease-in;
+  }
+
+  .expandabled41d8cd98f00b204e9800998ecf8427e__toggle {
+    margin-top: 0.5rem;
+    border: 0;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.6rem;
+    background: #111;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    width: 100%;
+  }
+    
+.expandabled41d8cd98f00b204e9800998ecf8427e__bar {
+    border-left: 4px solid #ccc;   /* grey vertical bar */
+    padding-left: 1em;
+}
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .expandabled41d8cd98f00b204e9800998ecf8427e__content { transition: none; }
+  }
+</style>
+
+<section class="expandabled41d8cd98f00b204e9800998ecf8427e expandabled41d8cd98f00b204e9800998ecf8427e--collapsed"><div class="expandabled41d8cd98f00b204e9800998ecf8427e__row"><div class="expandabled41d8cd98f00b204e9800998ecf8427e__bar"></div><div class="expandabled41d8cd98f00b204e9800998ecf8427e__content" aria-hidden="false">
+<p>Here is some text followed by other markdown features like a photo. Sometimes you only want to show the content to the user that chooses to see it while keeping the overall content of the page slim.</p>
+
+<p><img src="/photos/pexels-pixabay-326235.jpg" alt="" /></p>
+
+</div></div><button class="expandabled41d8cd98f00b204e9800998ecf8427e__toggle" type="button" aria-expanded="false" aria-controls="bio-content"> Show more </button></section>
+<script>
+{
+    const scriptEl = document.currentScript;
+    const section = scriptEl.previousElementSibling;
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        (function () {
+            const btn = section.querySelector('.expandabled41d8cd98f00b204e9800998ecf8427e__toggle');
+            
+            function updateUI(expanded) {
+                section.classList.toggle('expandabled41d8cd98f00b204e9800998ecf8427e--collapsed', !expanded);
+                section.classList.toggle('expandabled41d8cd98f00b204e9800998ecf8427e--expanded', expanded);
+                btn.setAttribute('aria-expanded', String(expanded));
+                btn.textContent = expanded ? 'Show less' : 'Show more';
+                
+                // Scroll into view only when collapsing
+                if (!expanded) {
+                    const rect = section.getBoundingClientRect();
+                    const isTopVisible = rect.top >= 0 && rect.top <= window.innerHeight;
+                    if (!isTopVisible) {
+                        section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                }
+            }
+            btn.addEventListener('click', function () {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                updateUI(!expanded);
+            });
+            // Optional: ensure we start collapsed
+            updateUI(false);
+        })();
+    }
+                              );
+}
+</script>
+
+<p>This plugin is also really good for long pieces of code - you want your user to be able to copy paste and use the code, but not take away from the concise way you present your content:</p>
+
+<style>
+  .expandabled41d8cd98f00b204e9800998ecf8427e {
+    --preview-height: 120px;   /* how much is visible when collapsed */
+    --fade-size: 120px;         /* how tall the fade-out is at the bottom */
+    --transition-ms: 280ms;
+
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    margin: 2rem auto;
+  }
+
+    .expandabled41d8cd98f00b204e9800998ecf8427e__row {
+      display: flex; /* horizontal row: bar + content */
+      width: 100%;
+    }
+    
+  .expandabled41d8cd98f00b204e9800998ecf8427e__content {
+    overflow: hidden;
+    max-height: var(--preview-height);
+    transition: max-height var(--transition-ms) ease;
+  }
+
+  /* Fade-out effect when collapsed: uses CSS mask (with -webkit- prefix for Safari) */
+  .expandabled41d8cd98f00b204e9800998ecf8427e--collapsed .expandabled41d8cd98f00b204e9800998ecf8427e__content {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black calc(var(--preview-height) - var(--fade-size)),
+      transparent var(--preview-height)
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) calc(var(--preview-height) - var(--fade-size)),
+      rgba(0,0,0,0) var(--preview-height)
+    );
+    -webkit-mask-size: 100% var(--preview-height);
+    mask-size: 100% var(--preview-height);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  /* Expanded state: remove mask and allow full height */
+  .expandabled41d8cd98f00b204e9800998ecf8427e--expanded .expandabled41d8cd98f00b204e9800998ecf8427e__content {
+    -webkit-mask-image: none;
+    mask-image: none;
+    /* Use a very large max-height so the transition can animate open */
+    max-height: 2000px;
+    transition: max-height .85s ease-in;
+  }
+
+  .expandabled41d8cd98f00b204e9800998ecf8427e__toggle {
+    margin-top: 0.5rem;
+    border: 0;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.6rem;
+    background: #111;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    width: 100%;
+  }
+    
+.expandabled41d8cd98f00b204e9800998ecf8427e__bar {
+    border-left: 4px solid #ccc;   /* grey vertical bar */
+    padding-left: 1em;
+}
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .expandabled41d8cd98f00b204e9800998ecf8427e__content { transition: none; }
+  }
+</style>
+
+<section class="expandabled41d8cd98f00b204e9800998ecf8427e expandabled41d8cd98f00b204e9800998ecf8427e--collapsed"><div class="expandabled41d8cd98f00b204e9800998ecf8427e__row"><div class="expandabled41d8cd98f00b204e9800998ecf8427e__bar"></div><div class="expandabled41d8cd98f00b204e9800998ecf8427e__content" aria-hidden="false">
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">face_recognition</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1"># --- Configuration ---
+# Folder with original images
+</span><span class="n">input_folder</span> <span class="o">=</span> <span class="s">'input_images'</span>
+<span class="c1"># Where to save cropped faces      
+</span><span class="n">faces_folder</span> <span class="o">=</span> <span class="s">'extracted_faces'</span>
+<span class="c1"># Where to save embeddings (as .npy files) 
+</span><span class="n">embeddings_folder</span> <span class="o">=</span> <span class="s">'embeddings'</span>   
+
+<span class="c1"># Create output folders if they don't exist
+</span><span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">faces_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">embeddings_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Loop through all files in the input folder
+</span><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">input_folder</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">endswith</span><span class="p">((</span><span class="s">'.png'</span><span class="p">,</span> <span class="s">'.jpg'</span><span class="p">,</span> <span class="s">'.jpeg'</span><span class="p">)):</span>
+        <span class="k">continue</span>  <span class="c1"># Skip non-image files
+</span>
+    <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="p">.</span><span class="n">load_image_file</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+
+    <span class="c1"># Find face locations
+</span>    <span class="n">face_locations</span> <span class="o">=</span> <span class="n">face_recognition</span>
+        <span class="p">.</span><span class="n">face_locations</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="c1"># Compute embeddings for each face
+</span>    <span class="n">face_encodings</span> <span class="o">=</span> <span class="n">face_recognition</span>
+        <span class="p">.</span><span class="n">face_encodings</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">face_locations</span><span class="p">)</span>
+
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span> <span class="ow">in</span> 
+        <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">face_locations</span><span class="p">,</span> <span class="n">face_encodings</span><span class="p">)):</span>
+        <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="n">location</span>
+
+        <span class="c1"># Crop the face from the original image
+</span>        <span class="n">face_image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span>
+            <span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">top</span><span class="p">:</span><span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span><span class="n">right</span><span class="p">])</span>
+        <span class="n">face_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">uuid</span><span class="p">.</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s">.jpg"</span>
+        <span class="n">face_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span>
+            <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">faces_folder</span><span class="p">,</span> <span class="n">face_filename</span><span class="p">)</span>
+        <span class="n">face_image</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">face_path</span><span class="p">)</span>
+
+        <span class="c1"># Save the face embedding as a .npy file
+</span>        <span class="n">embedding_filename</span> <span class="o">=</span> <span class="n">face_filename</span>
+            <span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.jpg'</span><span class="p">,</span> <span class="s">'.npy'</span><span class="p">)</span>
+        <span class="n">embedding_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span>
+            <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">embeddings_folder</span><span class="p">,</span> <span class="n">embedding_filename</span><span class="p">)</span>
+
+        <span class="c1"># Save as numpy array
+</span>        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+        <span class="n">np</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">embedding_path</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Saved face and embedding:
+            </span><span class="si">{</span><span class="n">face_filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"✅ Done extracting and computing embeddings."</span><span class="p">)</span>
+</code></pre></div></div>
+
+</div></div><button class="expandabled41d8cd98f00b204e9800998ecf8427e__toggle" type="button" aria-expanded="false" aria-controls="bio-content"> Show more </button></section>
+<script>
+{
+    const scriptEl = document.currentScript;
+    const section = scriptEl.previousElementSibling;
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        (function () {
+            const btn = section.querySelector('.expandabled41d8cd98f00b204e9800998ecf8427e__toggle');
+            
+            function updateUI(expanded) {
+                section.classList.toggle('expandabled41d8cd98f00b204e9800998ecf8427e--collapsed', !expanded);
+                section.classList.toggle('expandabled41d8cd98f00b204e9800998ecf8427e--expanded', expanded);
+                btn.setAttribute('aria-expanded', String(expanded));
+                btn.textContent = expanded ? 'Show less' : 'Show more';
+                
+                // Scroll into view only when collapsing
+                if (!expanded) {
+                    const rect = section.getBoundingClientRect();
+                    const isTopVisible = rect.top >= 0 && rect.top <= window.innerHeight;
+                    if (!isTopVisible) {
+                        section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                }
+            }
+            btn.addEventListener('click', function () {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                updateUI(!expanded);
+            });
+            // Optional: ensure we start collapsed
+            updateUI(false);
+        })();
+    }
+                              );
+}
+</script>
+
+<p>You can also change the preview height to show more/less content. This section below is identical to the one above it, but just has a smaller preview.</p>
+
+<style>
+  .expandable01ae1e207a3e1c10801ff4bbc8d78cb4 {
+    --preview-height: 50px;   /* how much is visible when collapsed */
+    --fade-size: 120px;         /* how tall the fade-out is at the bottom */
+    --transition-ms: 280ms;
+
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    margin: 2rem auto;
+  }
+
+    .expandable01ae1e207a3e1c10801ff4bbc8d78cb4__row {
+      display: flex; /* horizontal row: bar + content */
+      width: 100%;
+    }
+    
+  .expandable01ae1e207a3e1c10801ff4bbc8d78cb4__content {
+    overflow: hidden;
+    max-height: var(--preview-height);
+    transition: max-height var(--transition-ms) ease;
+  }
+
+  /* Fade-out effect when collapsed: uses CSS mask (with -webkit- prefix for Safari) */
+  .expandable01ae1e207a3e1c10801ff4bbc8d78cb4--collapsed .expandable01ae1e207a3e1c10801ff4bbc8d78cb4__content {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black calc(var(--preview-height) - var(--fade-size)),
+      transparent var(--preview-height)
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) calc(var(--preview-height) - var(--fade-size)),
+      rgba(0,0,0,0) var(--preview-height)
+    );
+    -webkit-mask-size: 100% var(--preview-height);
+    mask-size: 100% var(--preview-height);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  /* Expanded state: remove mask and allow full height */
+  .expandable01ae1e207a3e1c10801ff4bbc8d78cb4--expanded .expandable01ae1e207a3e1c10801ff4bbc8d78cb4__content {
+    -webkit-mask-image: none;
+    mask-image: none;
+    /* Use a very large max-height so the transition can animate open */
+    max-height: 2000px;
+    transition: max-height .85s ease-in;
+  }
+
+  .expandable01ae1e207a3e1c10801ff4bbc8d78cb4__toggle {
+    margin-top: 0.5rem;
+    border: 0;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.6rem;
+    background: #111;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    width: 100%;
+  }
+    
+.expandable01ae1e207a3e1c10801ff4bbc8d78cb4__bar {
+    border-left: 4px solid #ccc;   /* grey vertical bar */
+    padding-left: 1em;
+}
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .expandable01ae1e207a3e1c10801ff4bbc8d78cb4__content { transition: none; }
+  }
+</style>
+
+<section class="expandable01ae1e207a3e1c10801ff4bbc8d78cb4 expandable01ae1e207a3e1c10801ff4bbc8d78cb4--collapsed"><div class="expandable01ae1e207a3e1c10801ff4bbc8d78cb4__row"><div class="expandable01ae1e207a3e1c10801ff4bbc8d78cb4__bar"></div><div class="expandable01ae1e207a3e1c10801ff4bbc8d78cb4__content" aria-hidden="false">
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">face_recognition</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1"># --- Configuration ---
+# Folder with original images
+</span><span class="n">input_folder</span> <span class="o">=</span> <span class="s">'input_images'</span>
+<span class="c1"># Where to save cropped faces      
+</span><span class="n">faces_folder</span> <span class="o">=</span> <span class="s">'extracted_faces'</span>
+<span class="c1"># Where to save embeddings (as .npy files) 
+</span><span class="n">embeddings_folder</span> <span class="o">=</span> <span class="s">'embeddings'</span>   
+
+<span class="c1"># Create output folders if they don't exist
+</span><span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">faces_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">embeddings_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Loop through all files in the input folder
+</span><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">input_folder</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">endswith</span><span class="p">((</span><span class="s">'.png'</span><span class="p">,</span> <span class="s">'.jpg'</span><span class="p">,</span> <span class="s">'.jpeg'</span><span class="p">)):</span>
+        <span class="k">continue</span>  <span class="c1"># Skip non-image files
+</span>
+    <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="p">.</span><span class="n">load_image_file</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+
+    <span class="c1"># Find face locations
+</span>    <span class="n">face_locations</span> <span class="o">=</span> <span class="n">face_recognition</span>
+        <span class="p">.</span><span class="n">face_locations</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="c1"># Compute embeddings for each face
+</span>    <span class="n">face_encodings</span> <span class="o">=</span> <span class="n">face_recognition</span>
+        <span class="p">.</span><span class="n">face_encodings</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">face_locations</span><span class="p">)</span>
+
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span> <span class="ow">in</span> 
+        <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">face_locations</span><span class="p">,</span> <span class="n">face_encodings</span><span class="p">)):</span>
+        <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="n">location</span>
+
+        <span class="c1"># Crop the face from the original image
+</span>        <span class="n">face_image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span>
+            <span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">top</span><span class="p">:</span><span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span><span class="n">right</span><span class="p">])</span>
+        <span class="n">face_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">uuid</span><span class="p">.</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s">.jpg"</span>
+        <span class="n">face_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span>
+            <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">faces_folder</span><span class="p">,</span> <span class="n">face_filename</span><span class="p">)</span>
+        <span class="n">face_image</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">face_path</span><span class="p">)</span>
+
+        <span class="c1"># Save the face embedding as a .npy file
+</span>        <span class="n">embedding_filename</span> <span class="o">=</span> <span class="n">face_filename</span>
+            <span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.jpg'</span><span class="p">,</span> <span class="s">'.npy'</span><span class="p">)</span>
+        <span class="n">embedding_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span>
+            <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">embeddings_folder</span><span class="p">,</span> <span class="n">embedding_filename</span><span class="p">)</span>
+
+        <span class="c1"># Save as numpy array
+</span>        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+        <span class="n">np</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">embedding_path</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Saved face and embedding:
+            </span><span class="si">{</span><span class="n">face_filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"✅ Done extracting and computing embeddings."</span><span class="p">)</span>
+</code></pre></div></div>
+
+</div></div><button class="expandable01ae1e207a3e1c10801ff4bbc8d78cb4__toggle" type="button" aria-expanded="false" aria-controls="bio-content"> Show more </button></section>
+<script>
+{
+    const scriptEl = document.currentScript;
+    const section = scriptEl.previousElementSibling;
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        (function () {
+            const btn = section.querySelector('.expandable01ae1e207a3e1c10801ff4bbc8d78cb4__toggle');
+            
+            function updateUI(expanded) {
+                section.classList.toggle('expandable01ae1e207a3e1c10801ff4bbc8d78cb4--collapsed', !expanded);
+                section.classList.toggle('expandable01ae1e207a3e1c10801ff4bbc8d78cb4--expanded', expanded);
+                btn.setAttribute('aria-expanded', String(expanded));
+                btn.textContent = expanded ? 'Show less' : 'Show more';
+                
+                // Scroll into view only when collapsing
+                if (!expanded) {
+                    const rect = section.getBoundingClientRect();
+                    const isTopVisible = rect.top >= 0 && rect.top <= window.innerHeight;
+                    if (!isTopVisible) {
+                        section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                }
+            }
+            btn.addEventListener('click', function () {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                updateUI(!expanded);
+            });
+            // Optional: ensure we start collapsed
+            updateUI(false);
+        })();
+    }
+                              );
+}
+</script>
+
+<p>Finally, you can also modify the button text such as below:</p>
+
+<style>
+  .expandablecf913038ca6d902c9c534d8ab056bcdb {
+    --preview-height: 120px;   /* how much is visible when collapsed */
+    --fade-size: 120px;         /* how tall the fade-out is at the bottom */
+    --transition-ms: 280ms;
+
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    margin: 2rem auto;
+  }
+
+    .expandablecf913038ca6d902c9c534d8ab056bcdb__row {
+      display: flex; /* horizontal row: bar + content */
+      width: 100%;
+    }
+    
+  .expandablecf913038ca6d902c9c534d8ab056bcdb__content {
+    overflow: hidden;
+    max-height: var(--preview-height);
+    transition: max-height var(--transition-ms) ease;
+  }
+
+  /* Fade-out effect when collapsed: uses CSS mask (with -webkit- prefix for Safari) */
+  .expandablecf913038ca6d902c9c534d8ab056bcdb--collapsed .expandablecf913038ca6d902c9c534d8ab056bcdb__content {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black calc(var(--preview-height) - var(--fade-size)),
+      transparent var(--preview-height)
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) calc(var(--preview-height) - var(--fade-size)),
+      rgba(0,0,0,0) var(--preview-height)
+    );
+    -webkit-mask-size: 100% var(--preview-height);
+    mask-size: 100% var(--preview-height);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  /* Expanded state: remove mask and allow full height */
+  .expandablecf913038ca6d902c9c534d8ab056bcdb--expanded .expandablecf913038ca6d902c9c534d8ab056bcdb__content {
+    -webkit-mask-image: none;
+    mask-image: none;
+    /* Use a very large max-height so the transition can animate open */
+    max-height: 2000px;
+    transition: max-height .85s ease-in;
+  }
+
+  .expandablecf913038ca6d902c9c534d8ab056bcdb__toggle {
+    margin-top: 0.5rem;
+    border: 0;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.6rem;
+    background: #111;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    width: 100%;
+  }
+    
+.expandablecf913038ca6d902c9c534d8ab056bcdb__bar {
+    border-left: 4px solid #ccc;   /* grey vertical bar */
+    padding-left: 1em;
+}
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .expandablecf913038ca6d902c9c534d8ab056bcdb__content { transition: none; }
+  }
+</style>
+
+<section class="expandablecf913038ca6d902c9c534d8ab056bcdb expandablecf913038ca6d902c9c534d8ab056bcdb--collapsed"><div class="expandablecf913038ca6d902c9c534d8ab056bcdb__row"><div class="expandablecf913038ca6d902c9c534d8ab056bcdb__bar"></div><div class="expandablecf913038ca6d902c9c534d8ab056bcdb__content" aria-hidden="false">
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">face_recognition</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1"># --- Configuration ---
+# Folder with original images
+</span><span class="n">input_folder</span> <span class="o">=</span> <span class="s">'input_images'</span>
+<span class="c1"># Where to save cropped faces      
+</span><span class="n">faces_folder</span> <span class="o">=</span> <span class="s">'extracted_faces'</span>
+<span class="c1"># Where to save embeddings (as .npy files) 
+</span><span class="n">embeddings_folder</span> <span class="o">=</span> <span class="s">'embeddings'</span>   
+
+<span class="c1"># Create output folders if they don't exist
+</span><span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">faces_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">embeddings_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Loop through all files in the input folder
+</span><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">input_folder</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">endswith</span><span class="p">((</span><span class="s">'.png'</span><span class="p">,</span> <span class="s">'.jpg'</span><span class="p">,</span> <span class="s">'.jpeg'</span><span class="p">)):</span>
+        <span class="k">continue</span>  <span class="c1"># Skip non-image files
+</span>
+    <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">face_recognition</span><span class="p">.</span><span class="n">load_image_file</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+
+    <span class="c1"># Find face locations
+</span>    <span class="n">face_locations</span> <span class="o">=</span> <span class="n">face_recognition</span>
+        <span class="p">.</span><span class="n">face_locations</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="c1"># Compute embeddings for each face
+</span>    <span class="n">face_encodings</span> <span class="o">=</span> <span class="n">face_recognition</span>
+        <span class="p">.</span><span class="n">face_encodings</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">face_locations</span><span class="p">)</span>
+
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span> <span class="ow">in</span> 
+        <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">face_locations</span><span class="p">,</span> <span class="n">face_encodings</span><span class="p">)):</span>
+        <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="n">location</span>
+
+        <span class="c1"># Crop the face from the original image
+</span>        <span class="n">face_image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span>
+            <span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">top</span><span class="p">:</span><span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span><span class="n">right</span><span class="p">])</span>
+        <span class="n">face_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">uuid</span><span class="p">.</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s">.jpg"</span>
+        <span class="n">face_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span>
+            <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">faces_folder</span><span class="p">,</span> <span class="n">face_filename</span><span class="p">)</span>
+        <span class="n">face_image</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">face_path</span><span class="p">)</span>
+
+        <span class="c1"># Save the face embedding as a .npy file
+</span>        <span class="n">embedding_filename</span> <span class="o">=</span> <span class="n">face_filename</span>
+            <span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.jpg'</span><span class="p">,</span> <span class="s">'.npy'</span><span class="p">)</span>
+        <span class="n">embedding_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span>
+            <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">embeddings_folder</span><span class="p">,</span> <span class="n">embedding_filename</span><span class="p">)</span>
+
+        <span class="c1"># Save as numpy array
+</span>        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+        <span class="n">np</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">embedding_path</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Saved face and embedding:
+            </span><span class="si">{</span><span class="n">face_filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"✅ Done extracting and computing embeddings."</span><span class="p">)</span>
+</code></pre></div></div>
+
+</div></div><button class="expandablecf913038ca6d902c9c534d8ab056bcdb__toggle" type="button" aria-expanded="false" aria-controls="bio-content"> Show more </button></section>
+<script>
+{
+    const scriptEl = document.currentScript;
+    const section = scriptEl.previousElementSibling;
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        (function () {
+            const btn = section.querySelector('.expandablecf913038ca6d902c9c534d8ab056bcdb__toggle');
+            
+            function updateUI(expanded) {
+                section.classList.toggle('expandablecf913038ca6d902c9c534d8ab056bcdb--collapsed', !expanded);
+                section.classList.toggle('expandablecf913038ca6d902c9c534d8ab056bcdb--expanded', expanded);
+                btn.setAttribute('aria-expanded', String(expanded));
+                btn.textContent = expanded ? 'Show less' : 'Click me you lazy bum!';
+                
+                // Scroll into view only when collapsing
+                if (!expanded) {
+                    const rect = section.getBoundingClientRect();
+                    const isTopVisible = rect.top >= 0 && rect.top <= window.innerHeight;
+                    if (!isTopVisible) {
+                        section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                }
+            }
+            btn.addEventListener('click', function () {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                updateUI(!expanded);
+            });
+            // Optional: ensure we start collapsed
+            updateUI(false);
+        })();
+    }
+                              );
+}
+</script>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[In this page we have some examples of the https://github.com/mannyray/jekyll-expand tag plugin. Start with the one below… press the “Show more” followed by the “Show less” button to see the style and transitions of the buttons.]]></summary></entry></feed>

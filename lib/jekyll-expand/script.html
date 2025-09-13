@@ -1,0 +1,35 @@
+<script>
+{
+    const scriptEl = document.currentScript;
+    const section = scriptEl.previousElementSibling;
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        (function () {
+            const btn = section.querySelector('.expandable__toggle');
+            
+            function updateUI(expanded) {
+                section.classList.toggle('expandable--collapsed', !expanded);
+                section.classList.toggle('expandable--expanded', expanded);
+                btn.setAttribute('aria-expanded', String(expanded));
+                btn.textContent = expanded ? 'Show less' : 'Show more';
+                
+                // Scroll into view only when collapsing
+                if (!expanded) {
+                    const rect = section.getBoundingClientRect();
+                    const isTopVisible = rect.top >= 0 && rect.top <= window.innerHeight;
+                    if (!isTopVisible) {
+                        section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                }
+            }
+            btn.addEventListener('click', function () {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                updateUI(!expanded);
+            });
+            // Optional: ensure we start collapsed
+            updateUI(false);
+        })();
+    }
+                              );
+}
+</script>
